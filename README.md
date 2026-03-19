@@ -22,7 +22,7 @@ Automatically generates a color-coded SVG of your commits, colored by the time o
 
 ### Step 1 — Fork or create this repository
 
-Create a **public** repository named `energy-rhythm-svg` on your GitHub account and push this code.
+Repository already created at [hugotakeda/Energy-Rhythm-Contribution-Graph](https://github.com/hugotakeda/Energy-Rhythm-Contribution-Graph).
 
 ### Step 2 — Create a Personal Access Token
 
@@ -56,12 +56,10 @@ In your profile repository (`YOUR_USERNAME/YOUR_USERNAME`), add:
 <picture>
   <img
     alt="Energy Rhythm Graph"
-    src="https://raw.githubusercontent.com/YOUR_USERNAME/energy-rhythm-svg/main/dist/energy-rhythm.svg"
+    src="https://raw.githubusercontent.com/hugotakeda/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg"
   />
 </picture>
 ```
-
-> Replace `YOUR_USERNAME` with your actual GitHub username.
 
 ---
 
@@ -87,4 +85,4 @@ dist/
 
 ## 📄 License
 
-[MIT](./LICENSE) © 2026 TAKEDA
+[MIT](./LICENSE) © 2026 hugotakeda

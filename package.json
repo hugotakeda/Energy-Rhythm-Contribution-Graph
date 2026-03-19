@@ -6,6 +6,6 @@
     "generate": "node scripts/generateSvg.js"
   },
   "keywords": ["github-profile", "contribution-graph", "github-action", "svg"],
-  "author": "TAKEDA",
+  "author": "hugotakeda",
   "license": "MIT"
 }
