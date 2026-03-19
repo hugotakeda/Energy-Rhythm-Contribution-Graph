@@ -135,15 +135,14 @@ function buildDayMap(commitDates) {
 }
 
 // ── SVG dimensions ─────────────────────────────────────────────────────────────
-// ── SVG dimensions ─────────────────────────────────────────────────────────────
 const CELL     = 11;
 const GAP      = 3;
 const STEP     = CELL + GAP;
 const TOP_PAD  = 28;   // room for month labels
 const COLS     = 53;
 const ROWS     = 7;
-const WIDTH    = 880;  // Wider to match standard GitHub cards
-const HEIGHT   = 220;  // Slightly taller for better spacing
+const WIDTH    = 710;  // Reduced by 85px on each side (was 880)
+const HEIGHT   = 165;  // Reduced from 220; accommodates grid + 2-line legend
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -151,7 +150,7 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 function buildSvg(days) {
   // align to full weeks
   const today    = new Date();
-  
+
   // Pad front so Day 0 lands on correct weekday
   const firstDate   = new Date(days[0].date);
   const firstDow    = firstDate.getDay(); // 0=Sun
@@ -221,14 +220,14 @@ function buildSvg(days) {
 
   // – legend –
   const legendItems = [
-    { state: 'madrugada', label: 'Night Owl'   },
-    { state: 'manha',     label: 'Early Bird'   },
-    { state: 'tarde',     label: 'Peak Hours'  },
-    { state: 'noite',     label: 'Deep Focus' },
+    { state: 'madrugada', label: 'Night Owl',  hours: '00h – 05h' },
+    { state: 'manha',     label: 'Early Bird', hours: '06h – 11h' },
+    { state: 'tarde',     label: 'Peak Hours', hours: '12h – 17h' },
+    { state: 'noite',     label: 'Deep Focus', hours: '18h – 23h' },
   ];
 
-  const legendY = TOP_PAD + ROWS * STEP + 25;
-  const itemWidth = 110;
+  const legendY = TOP_PAD + ROWS * STEP + 10;
+  const itemWidth = 140;
   const totalLegendWidth = legendItems.length * itemWidth;
   const legendStartX = Math.floor((WIDTH - totalLegendWidth) / 2);
 
@@ -236,7 +235,8 @@ function buildSvg(days) {
     const lx = legendStartX + i * itemWidth;
     return `
     <rect x="${lx}" y="${legendY}" width="${CELL}" height="${CELL}" rx="2" fill="${STATES[item.state].color}"/>
-    <text x="${lx + CELL + 6}" y="${legendY + 9}" fill="#8b949e" font-size="10" font-family="monospace">${item.label}</text>`;
+    <text x="${lx + CELL + 6}" y="${legendY + 9}" fill="#8b949e" font-size="10" font-family="monospace">${item.label}</text>
+    <text x="${lx + CELL + 6}" y="${legendY + 20}" fill="#555e6b" font-size="9" font-family="monospace">${item.hours}</text>`;
   }).join('');
 
   // – pulse animation on intense cells –
