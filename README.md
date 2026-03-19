@@ -83,6 +83,15 @@ dist/
 
 ---
 
+## 🍴 Use this for your own profile
+
+1. Fork this repository
+2. Go to your fork's **Settings → Secrets → Actions** → Add `GRAPH_TOKEN`
+3. Run the **Generate Energy Rhythm SVG** action manually
+4. Add the generated SVG to your profile README
+
+---
+
 ## 📄 License
 
 [MIT](./LICENSE) © 2026 hugotakeda
