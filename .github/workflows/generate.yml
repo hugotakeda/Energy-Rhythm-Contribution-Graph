@@ -18,13 +18,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Generate SVG
         run: node scripts/generateSvg.js
         env:
           GITHUB_USERNAME: ${{ github.repository_owner }}
-          GITHUB_TOKEN: ${{ secrets.GRAPH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GRAPH_TOKEN }}
 
       - name: Commit & push SVG
         uses: stefanzweifel/git-auto-commit-action@v5

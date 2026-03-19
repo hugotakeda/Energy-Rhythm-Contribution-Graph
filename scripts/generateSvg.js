@@ -6,7 +6,7 @@ const path = require('path');
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const USERNAME = process.env.GITHUB_USERNAME || process.argv[2];
-const TOKEN    = process.env.GITHUB_TOKEN    || process.argv[3];
+const TOKEN    = process.env.GH_TOKEN        || process.argv[3];
 
 if (!USERNAME || !TOKEN) {
   console.error('Usage: node scripts/generateSvg.js <username> <token>');
