@@ -1,0 +1,11 @@
+{
+  "name": "energy-rhythm-svg",
+  "version": "1.0.0",
+  "description": "GitHub Action that generates a circadian-rhythm contribution graph SVG",
+  "scripts": {
+    "generate": "node scripts/generateSvg.js"
+  },
+  "keywords": ["github-profile", "contribution-graph", "github-action", "svg"],
+  "author": "TAKEDA",
+  "license": "MIT"
+}
