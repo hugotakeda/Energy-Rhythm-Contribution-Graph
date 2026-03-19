@@ -142,8 +142,8 @@ const STEP     = CELL + GAP;
 const TOP_PAD  = 28;   // room for month labels
 const COLS     = 53;
 const ROWS     = 7;
-const WIDTH    = 800;  // Fixed width for centering
-const HEIGHT   = 200;  // Adjusted height
+const WIDTH    = 880;  // Wider to match standard GitHub cards
+const HEIGHT   = 220;  // Slightly taller for better spacing
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
