@@ -8,11 +8,17 @@ const path = require('path');
 const USERNAME = process.env.GITHUB_USERNAME || process.argv[2];
 const TOKEN    = process.env.GH_TOKEN        || process.argv[3];
 
-if (!USERNAME || !TOKEN) {
-  console.error('Usage: node scripts/generateSvg.js <username> <token>');
-  console.error('  or set GITHUB_USERNAME and GITHUB_TOKEN env vars');
+if (!USERNAME) {
+  console.error('Error: GITHUB_USERNAME is not set.');
   process.exit(1);
 }
+if (!TOKEN) {
+  console.error('Error: GH_TOKEN is not set. Please check your GitHub Secrets (GRAPH_TOKEN).');
+  process.exit(1);
+}
+
+console.log(`Starting SVG generation for user: ${USERNAME}`);
+console.log(`Token provided: ${TOKEN ? 'Yes' : 'No'} (length: ${TOKEN?.length || 0})`);
 
 // ── Energy State ──────────────────────────────────────────────────────────────
 const STATES = {
