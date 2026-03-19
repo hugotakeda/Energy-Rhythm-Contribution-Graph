@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌙 Energy Rhythm Graph
+# Energy Rhythm Graph
 
 **A GitHub contribution graph reimagined by circadian rhythm.**  
 Automatically generates a color-coded SVG of your commits, colored by the time of day you code.
@@ -18,7 +18,7 @@ Automatically generates a color-coded SVG of your commits, colored by the time o
 
 ---
 
-## 🚀 Setup (5 minutes)
+## Setup (5 minutes)
 
 ### Step 1 — Fork or create this repository
 
@@ -85,7 +85,7 @@ In your profile repository (`YOUR_USERNAME/YOUR_USERNAME`), add:
 
 ---
 
-## 🗂️ How it works
+##  How it works
 
 ```
 scripts/
@@ -105,7 +105,7 @@ dist/
 
 ---
 
-## 🍴 Use this for your own profile
+##  Use this for your own profile
 
 1. Fork this repository
 2. Go to your fork's **Settings → Secrets → Actions** → Add `GRAPH_TOKEN`
