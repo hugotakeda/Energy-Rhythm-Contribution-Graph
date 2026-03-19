@@ -141,8 +141,8 @@ const STEP     = CELL + GAP;
 const TOP_PAD  = 28;   // room for month labels
 const COLS     = 53;
 const ROWS     = 7;
-const WIDTH    = 710;  // Reduced by 85px on each side (was 880)
-const HEIGHT   = 165;  // Reduced from 220; accommodates grid + 2-line legend
+const SIDE_PAD = 10;   // horizontal padding on each side (compact edges)
+const BOT_PAD  = 52;   // space below grid for 2-line legend
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -163,7 +163,9 @@ function buildSvg(days) {
   }
 
   const graphWidth = weeks.length * STEP;
-  const LEFT_PAD   = Math.floor((WIDTH - graphWidth) / 2);
+  const WIDTH      = graphWidth + 2 * SIDE_PAD;
+  const HEIGHT     = TOP_PAD + ROWS * STEP + BOT_PAD;
+  const LEFT_PAD   = SIDE_PAD;
 
   // – month labels –
   const monthLabels = [];
@@ -207,7 +209,7 @@ function buildSvg(days) {
       const filterAttr = hasGlow ? ` filter="url(#${filterId})"` : '';
 
       // tooltip via <title>
-      const stateLabel = STATES[state].label.replace(/[^\w\s]/g, '').trim(); // Remove emojis
+      const stateLabel = STATES[state].label.replace(/[^\w\s]/g, '').trim();
       const tooltip = `${day.date} — ${day.total} commit${day.total !== 1 ? 's' : ''} | ${stateLabel}`;
 
       cells.push(`
@@ -220,10 +222,10 @@ function buildSvg(days) {
 
   // – legend –
   const legendItems = [
-    { state: 'madrugada', label: 'Night Owl',  hours: '00h – 05h' },
-    { state: 'manha',     label: 'Early Bird', hours: '06h – 11h' },
-    { state: 'tarde',     label: 'Peak Hours', hours: '12h – 17h' },
-    { state: 'noite',     label: 'Deep Focus', hours: '18h – 23h' },
+    { state: 'madrugada', label: 'Night Owl',  hours: '00h \u2013 05h' },
+    { state: 'manha',     label: 'Early Bird', hours: '06h \u2013 11h' },
+    { state: 'tarde',     label: 'Peak Hours', hours: '12h \u2013 17h' },
+    { state: 'noite',     label: 'Deep Focus', hours: '18h \u2013 23h' },
   ];
 
   const legendY = TOP_PAD + ROWS * STEP + 10;
