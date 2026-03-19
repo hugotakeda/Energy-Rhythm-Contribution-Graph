@@ -100,7 +100,6 @@ async function fetchCommits(username, token) {
 
 // ── Build daily energy map ─────────────────────────────────────────────────────
 function buildDayMap(commitDates) {
-  // Initialize 365 days
   const map = new Map();
   for (let i = 364; i >= 0; i--) {
     const d = new Date();
@@ -109,7 +108,6 @@ function buildDayMap(commitDates) {
     map.set(key, { date: key, total: 0, details: { madrugada: 0, manha: 0, tarde: 0, noite: 0 } });
   }
 
-  // Fill commits
   for (const iso of commitDates) {
     const d    = new Date(iso);
     const key  = d.toISOString().split('T')[0];
@@ -121,7 +119,6 @@ function buildDayMap(commitDates) {
     }
   }
 
-  // Determine predominant state
   const days = Array.from(map.values());
   for (const day of days) {
     if (day.total === 0) {
@@ -141,29 +138,24 @@ const STEP     = CELL + GAP;
 const TOP_PAD  = 28;   // room for month labels
 const COLS     = 53;
 const ROWS     = 7;
-const SIDE_PAD = 10;   // horizontal padding on each side (compact edges)
+const SIDE_PAD = 10;   // horizontal padding on each side (compact, no clipping)
 const BOT_PAD  = 52;   // space below grid for 2-line legend
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 // ── Build SVG ──────────────────────────────────────────────────────────────────
 function buildSvg(days) {
-  // align to full weeks
-  const today    = new Date();
-
-  // Pad front so Day 0 lands on correct weekday
   const firstDate   = new Date(days[0].date);
-  const firstDow    = firstDate.getDay(); // 0=Sun
+  const firstDow    = firstDate.getDay();
   const paddedDays  = [...Array(firstDow).fill(null), ...days];
 
-  // chunk into weeks (columns)
   const weeks = [];
   for (let i = 0; i < paddedDays.length; i += 7) {
     weeks.push(paddedDays.slice(i, i + 7));
   }
 
   const graphWidth = weeks.length * STEP;
-  const WIDTH      = graphWidth + 2 * SIDE_PAD;
+  const WIDTH      = graphWidth + 2 * SIDE_PAD;  // dynamic: fits content exactly
   const HEIGHT     = TOP_PAD + ROWS * STEP + BOT_PAD;
   const LEFT_PAD   = SIDE_PAD;
 
@@ -187,14 +179,12 @@ function buildSvg(days) {
   weeks.forEach((week, wi) => {
     week.forEach((day, di) => {
       if (!day) return;
-      const x     = LEFT_PAD + wi * STEP;
-      const y     = TOP_PAD + di * STEP;
-      const state = day.state;
-      const cfg   = STATES[state];
-      const op    = getOpacity(day.total);
+      const x       = LEFT_PAD + wi * STEP;
+      const y       = TOP_PAD + di * STEP;
+      const state   = day.state;
+      const cfg     = STATES[state];
+      const op      = getOpacity(day.total);
       const hasGlow = day.total > 5 && state !== 'none';
-
-      // animated glow filter id
       const filterId = `glow-${wi}-${di}`;
 
       if (hasGlow) {
@@ -205,12 +195,10 @@ function buildSvg(days) {
   </filter>`);
       }
 
-      const fillColor = cfg.color;
+      const fillColor  = cfg.color;
       const filterAttr = hasGlow ? ` filter="url(#${filterId})"` : '';
-
-      // tooltip via <title>
       const stateLabel = STATES[state].label.replace(/[^\w\s]/g, '').trim();
-      const tooltip = `${day.date} — ${day.total} commit${day.total !== 1 ? 's' : ''} | ${stateLabel}`;
+      const tooltip    = `${day.date} — ${day.total} commit${day.total !== 1 ? 's' : ''} | ${stateLabel}`;
 
       cells.push(`
     <rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2" ry="2"
@@ -222,26 +210,25 @@ function buildSvg(days) {
 
   // – legend –
   const legendItems = [
-    { state: 'madrugada', label: 'Night Owl',  hours: '00h \u2013 05h' },
-    { state: 'manha',     label: 'Early Bird', hours: '06h \u2013 11h' },
-    { state: 'tarde',     label: 'Peak Hours', hours: '12h \u2013 17h' },
-    { state: 'noite',     label: 'Deep Focus', hours: '18h \u2013 23h' },
+    { state: 'madrugada', label: 'Night Owl',  hours: '00h – 05h' },
+    { state: 'manha',     label: 'Early Bird', hours: '06h – 11h' },
+    { state: 'tarde',     label: 'Peak Hours', hours: '12h – 17h' },
+    { state: 'noite',     label: 'Deep Focus', hours: '18h – 23h' },
   ];
 
-  const legendY = TOP_PAD + ROWS * STEP + 10;
-  const itemWidth = 140;
+  const legendY          = TOP_PAD + ROWS * STEP + 10;
+  const itemWidth        = 140;
   const totalLegendWidth = legendItems.length * itemWidth;
-  const legendStartX = Math.floor((WIDTH - totalLegendWidth) / 2);
+  const legendStartX     = Math.floor((WIDTH - totalLegendWidth) / 2);
 
   const legendItems_svg = legendItems.map((item, i) => {
     const lx = legendStartX + i * itemWidth;
     return `
     <rect x="${lx}" y="${legendY}" width="${CELL}" height="${CELL}" rx="2" fill="${STATES[item.state].color}"/>
-    <text x="${lx + CELL + 6}" y="${legendY + 9}" fill="#8b949e" font-size="10" font-family="monospace">${item.label}</text>
-    <text x="${lx + CELL + 6}" y="${legendY + 20}" fill="#555e6b" font-size="9" font-family="monospace">${item.hours}</text>`;
+    <text x="${lx + CELL + 6}" y="${legendY + 9}"  fill="#8b949e" font-size="10" font-family="monospace">${item.label}</text>
+    <text x="${lx + CELL + 6}" y="${legendY + 20}" fill="#555e6b" font-size="9"  font-family="monospace">${item.hours}</text>`;
   }).join('');
 
-  // – pulse animation on intense cells –
   const pulseAnim = `
   <style>
     @keyframes pulse { 0%,100%{opacity:.85} 50%{opacity:1} }
