@@ -63,6 +63,28 @@ In your profile repository (`YOUR_USERNAME/YOUR_USERNAME`), add:
 
 ---
 
+## 🍴 Use this for your own profile
+
+1. **Fork** this repository.
+2. Generate a **GitHub Personal Access Token** (classic) with `repo` and `read:user` scopes at [github.com/settings/tokens](https://github.com/settings/tokens).
+3. In your fork, go to **Settings → Secrets and variables → Actions** and add a new secret:
+   - **Name:** `GRAPH_TOKEN`
+   - **Value:** (your generated token)
+4. Go to the **Actions** tab, select **Generate Energy Rhythm SVG**, and click **Run workflow**.
+5. Add the following to your profile README:
+
+```markdown
+<picture>
+  <img
+    alt="Energy Rhythm Graph"
+    src="https://raw.githubusercontent.com/YOUR_USERNAME/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg"
+  />
+</picture>
+```
+*Replace `YOUR_USERNAME` with your GitHub handle.*
+
+---
+
 ## 🗂️ How it works
 
 ```
