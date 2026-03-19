@@ -135,15 +135,15 @@ function buildDayMap(commitDates) {
 }
 
 // ── SVG dimensions ─────────────────────────────────────────────────────────────
+// ── SVG dimensions ─────────────────────────────────────────────────────────────
 const CELL     = 11;
 const GAP      = 3;
 const STEP     = CELL + GAP;
 const TOP_PAD  = 28;   // room for month labels
-const LEFT_PAD = 0;
 const COLS     = 53;
 const ROWS     = 7;
-const WIDTH    = LEFT_PAD + COLS * STEP + 2;
-const HEIGHT   = TOP_PAD + ROWS * STEP + 60; // +60 for legend
+const WIDTH    = 800;  // Fixed width for centering
+const HEIGHT   = 200;  // Adjusted height
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -151,8 +151,7 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 function buildSvg(days) {
   // align to full weeks
   const today    = new Date();
-  const startDow = (today.getDay() + 1) % 7; // 0=Sun grid starts Sunday
-
+  
   // Pad front so Day 0 lands on correct weekday
   const firstDate   = new Date(days[0].date);
   const firstDow    = firstDate.getDay(); // 0=Sun
@@ -163,6 +162,9 @@ function buildSvg(days) {
   for (let i = 0; i < paddedDays.length; i += 7) {
     weeks.push(paddedDays.slice(i, i + 7));
   }
+
+  const graphWidth = weeks.length * STEP;
+  const LEFT_PAD   = Math.floor((WIDTH - graphWidth) / 2);
 
   // – month labels –
   const monthLabels = [];
@@ -202,11 +204,11 @@ function buildSvg(days) {
   </filter>`);
       }
 
-      const fillColor = state === 'none' ? cfg.color : cfg.color;
+      const fillColor = cfg.color;
       const filterAttr = hasGlow ? ` filter="url(#${filterId})"` : '';
 
       // tooltip via <title>
-      const stateLabel = STATES[state].label;
+      const stateLabel = STATES[state].label.replace(/[^\w\s]/g, '').trim(); // Remove emojis
       const tooltip = `${day.date} — ${day.total} commit${day.total !== 1 ? 's' : ''} | ${stateLabel}`;
 
       cells.push(`
@@ -219,18 +221,22 @@ function buildSvg(days) {
 
   // – legend –
   const legendItems = [
-    { state: 'madrugada', label: 'Night Owl 🌙'   },
-    { state: 'manha',     label: 'Early Bird ☕'   },
-    { state: 'tarde',     label: 'Peak Hours ☀️'  },
-    { state: 'noite',     label: 'Deep Focus 🕯️' },
+    { state: 'madrugada', label: 'Night Owl'   },
+    { state: 'manha',     label: 'Early Bird'   },
+    { state: 'tarde',     label: 'Peak Hours'  },
+    { state: 'noite',     label: 'Deep Focus' },
   ];
 
-  const legendY = TOP_PAD + ROWS * STEP + 16;
+  const legendY = TOP_PAD + ROWS * STEP + 25;
+  const itemWidth = 110;
+  const totalLegendWidth = legendItems.length * itemWidth;
+  const legendStartX = Math.floor((WIDTH - totalLegendWidth) / 2);
+
   const legendItems_svg = legendItems.map((item, i) => {
-    const lx = i * 148;
+    const lx = legendStartX + i * itemWidth;
     return `
     <rect x="${lx}" y="${legendY}" width="${CELL}" height="${CELL}" rx="2" fill="${STATES[item.state].color}"/>
-    <text x="${lx + CELL + 5}" y="${legendY + 9}" fill="#8b949e" font-size="10" font-family="monospace">${item.label}</text>`;
+    <text x="${lx + CELL + 6}" y="${legendY + 9}" fill="#8b949e" font-size="10" font-family="monospace">${item.label}</text>`;
   }).join('');
 
   // – pulse animation on intense cells –
