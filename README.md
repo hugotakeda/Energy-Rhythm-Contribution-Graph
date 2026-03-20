@@ -48,6 +48,14 @@ Repository already created at [hugotakeda/Energy-Rhythm-Contribution-Graph](http
 
 After the first run, the Action runs **automatically every day at 03:00 UTC**.
 
+### 🌍 Optional: Adjusting your Timezone
+By default, the graph uses **UTC**. To use your local time (e.g., for Brazil):
+1. Go to your repository **Settings** > **Secrets and variables** > **Actions**.
+2. Switch to the **Variables** tab (top right).
+3. Click **New repository variable**.
+4. Name: `TIMEZONE` | Value: `America/Sao_Paulo` (or [your timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)).
+5. Run the action again to update the colors!
+
 ### 📈 Step 3: Add to your Profile README
 
 Copy and paste this into your profile's `README.md`:

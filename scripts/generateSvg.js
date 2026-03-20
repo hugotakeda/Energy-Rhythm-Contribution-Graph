@@ -7,6 +7,7 @@ const path = require('path');
 // ── Config ────────────────────────────────────────────────────────────────────
 const USERNAME = process.env.GITHUB_USERNAME || process.argv[2];
 const TOKEN    = process.env.GH_TOKEN        || process.argv[3];
+const TIMEZONE = process.env.TIMEZONE        || 'UTC';
 
 if (!USERNAME) {
   console.error('Error: GITHUB_USERNAME is not set.');
@@ -109,10 +110,16 @@ function buildDayMap(commitDates) {
   }
 
   for (const iso of commitDates) {
-    const d    = new Date(iso);
-    const key  = d.toISOString().split('T')[0];
-    const hour = d.getUTCHours();
+    const d = new Date(iso);
+    
+    // Extract local date and hour based on TIMEZONE
+    const dtfDate = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: TIMEZONE });
+    const dtfHour = new Intl.DateTimeFormat('en-US', { hour: 'numeric', hour12: false, timeZone: TIMEZONE });
+    
+    const key   = dtfDate.format(d);
+    const hour  = parseInt(dtfHour.format(d));
     const state = getEnergyState(hour);
+
     if (map.has(key)) {
       map.get(key).total++;
       map.get(key).details[state]++;

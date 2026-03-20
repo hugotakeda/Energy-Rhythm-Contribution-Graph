@@ -29,6 +29,7 @@ jobs:
         env:
           GITHUB_USERNAME: ${{ github.repository_owner }}
           GH_TOKEN: ${{ secrets.GRAPH_TOKEN }}
+          TIMEZONE: ${{ vars.TIMEZONE || 'UTC' }}
 
       - name: Commit & push SVG
         uses: stefanzweifel/git-auto-commit-action@v5
