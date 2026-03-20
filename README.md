@@ -1,6 +1,6 @@
 <div align="center">
 
-# Energy Rhythm Graph
+# 🌙 Energy Rhythm Graph
 
 **A GitHub contribution graph reimagined by circadian rhythm.**  
 Automatically generates a color-coded SVG of your commits, colored by the time of day you code.
@@ -9,111 +9,54 @@ Automatically generates a color-coded SVG of your commits, colored by the time o
 
 | State | Hours | Color |
 |---|---|---|
-| Night Owl | 00h – 05h | Neon Purple |
-| Early Bird | 06h – 11h | Soft Gold |
-| Peak Hours | 12h – 17h | Vibrant Orange |
-| Deep Focus | 18h – 23h | Cyan Blue |
+| 🌙 **Shadow Mode** | 00h – 05h | Neon Purple |
+| ☕ **Logic Prime** | 06h – 11h | Soft Gold |
+| ☀️ **Peak Velocity** | 12h – 17h | Vibrant Orange |
+| 🕯️ **Flow State** | 18h – 23h | Cyan Blue |
 
 </div>
 
 ---
 
-## Setup (5 minutes)
+## 🚀 Quick Start (5 minutes)
 
-### Step 1 — Fork or create this repository
-
-Repository already created at [hugotakeda/Energy-Rhythm-Contribution-Graph](https://github.com/hugotakeda/Energy-Rhythm-Contribution-Graph).
-
-### Step 2 — Create a Personal Access Token
-
-1. Go to [github.com/settings/tokens](https://github.com/settings/tokens) → **Generate new token (classic)**
-2. Give it a name like `energy-rhythm-graph`
-3. Select scopes: ✅ `repo` and ✅ `read:user`
-4. Click **Generate token** and copy it
-
-### Step 3 — Add the token as a Repository Secret
-
-1. In your `energy-rhythm-svg` repo → **Settings → Secrets and variables → Actions**
-2. Click **New repository secret**
-3. Name: `GRAPH_TOKEN`
-4. Value: paste your token
-5. Click **Add secret**
-
-### Step 4 — Run the Action manually (first time)
-
-1. Go to **Actions** tab in your repo
-2. Click **Generate Energy Rhythm SVG**
-3. Click **Run workflow**
-4. Wait ~30 seconds — the `dist/energy-rhythm.svg` file will appear in your repo
-
-After the first run, the Action runs **automatically every day at 03:00 UTC**.
-
-### Step 5 — Add to your profile README
-
-In your profile repository (`YOUR_USERNAME/YOUR_USERNAME`), add:
+1.  **Fork** this repository.
+2.  Generate a **Personal Access Token (classic)** with `repo` and `read:user` scopes at [github.com/settings/tokens](https://github.com/settings/tokens).
+3.  In your fork, go to **Settings → Secrets and variables → Actions** and add a new secret:
+    *   **Name:** `GRAPH_TOKEN`
+    *   **Value:** (your generated token)
+4.  Go to the **Actions** tab, select **Generate Energy Rhythm SVG**, and click **Run workflow**.
+5.  Add the generated SVG to your profile README:
 
 ```markdown
-<picture>
-  <img
-    alt="Energy Rhythm Graph"
-    src="https://raw.githubusercontent.com/hugotakeda/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg"
-  />
-</picture>
-```
-
----
-
-## 🍴 Use this for your own profile
-
-1. **Fork** this repository.
-2. Generate a **GitHub Personal Access Token** (classic) with `repo` and `read:user` scopes at [github.com/settings/tokens](https://github.com/settings/tokens).
-3. In your fork, go to **Settings → Secrets and variables → Actions** and add a new secret:
-   - **Name:** `GRAPH_TOKEN`
-   - **Value:** (your generated token)
-4. Go to the **Actions** tab, select **Generate Energy Rhythm SVG**, and click **Run workflow**.
-5. Add the following to your profile README:
-
-```markdown
-<picture>
-  <img
-    alt="Energy Rhythm Graph"
-    src="https://raw.githubusercontent.com/YOUR_USERNAME/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg"
-  />
-</picture>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/YOUR_USERNAME/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg" />
+</p>
 ```
 *Replace `YOUR_USERNAME` with your GitHub handle.*
 
 ---
 
-## How it works
+## 🌍 Configuration (Optional)
 
-```
-scripts/
-└── generateSvg.js         # Fetches GitHub commits → generates SVG
-.github/
-└── workflows/
-    └── generate.yml       # Runs daily on cron, commits the SVG
-dist/
-└── energy-rhythm.svg      # ← auto-generated, embed this in your profile
-```
-
-1. The GitHub Action runs `node scripts/generateSvg.js`
-2. The script calls the **GitHub GraphQL API** to get all your commits from the last 365 days
-3. Each day is classified by the **predominant Energy State** (time of day)
-4. A styled SVG is written to `dist/energy-rhythm.svg`
-5. The Action auto-commits and pushes the file
+By default, the graph uses **UTC**. To use your local time:
+1.  Go to **Settings → Secrets and variables → Actions**.
+2.  Switch to the **Variables** tab (top right).
+3.  Click **New repository variable**.
+4.  **Name:** `TIMEZONE` | **Value:** `America/Sao_Paulo` (or [your timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)).
 
 ---
 
-## 🍴 Use this for your own profile
+## 🗂️ How it works
 
-1. Fork this repository
-2. Go to your fork's **Settings → Secrets → Actions** → Add `GRAPH_TOKEN`
-3. Run the **Generate Energy Rhythm SVG** action manually
-4. Add the generated SVG to your profile README
+The system uses **Node.js** and the **GitHub GraphQL API** to fetch your commit history from the last 365 days. 
+
+-   **Logic:** Each day is colored based on the *predominant* hour of your commits.
+-   **Glow:** High-frequency days (9+ commits) get a subtle neon glow effect.
+-   **Precision:** The SVG is locked at **775px** width to perfectly align with other standard GitHub metrics cards.
 
 ---
 
-## License
+## 📄 License
 
 [MIT](./LICENSE) © 2026 hugotakeda
