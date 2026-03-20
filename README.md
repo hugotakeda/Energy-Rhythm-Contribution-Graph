@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌙 Energy Rhythm Graph
+# Energy Rhythm Graph
 
 **A GitHub contribution graph reimagined by circadian rhythm.**  
 Automatically generates a color-coded SVG of your commits, colored by the time of day you code.
@@ -9,16 +9,16 @@ Automatically generates a color-coded SVG of your commits, colored by the time o
 
 | State | Hours | Color |
 |---|---|---|
-| 🌙 **Shadow Mode** | 00h – 05h | Neon Purple |
-| ☕ **Logic Prime** | 06h – 11h | Soft Gold |
-| ☀️ **Peak Velocity** | 12h – 17h | Vibrant Orange |
-| 🕯️ **Flow State** | 18h – 23h | Cyan Blue |
+| **Shadow Mode** | 00h – 05h | Neon Purple |
+| **Logic Prime** | 06h – 11h | Soft Gold |
+| **Peak Velocity** | 12h – 17h | Vibrant Orange |
+| **Flow State** | 18h – 23h | Cyan Blue |
 
 </div>
 
 ---
 
-## 🚀 Quick Start (5 minutes)
+## Quick Start (5 minutes)
 
 1.  **Fork** this repository.
 2.  Generate a **Personal Access Token (classic)** with `repo` and `read:user` scopes at [github.com/settings/tokens](https://github.com/settings/tokens).
@@ -37,7 +37,7 @@ Automatically generates a color-coded SVG of your commits, colored by the time o
 
 ---
 
-## 🌍 Configuration (Optional)
+## Configuration (Optional)
 
 By default, the graph uses **UTC**. To use your local time:
 1.  Go to **Settings → Secrets and variables → Actions**.
@@ -47,7 +47,7 @@ By default, the graph uses **UTC**. To use your local time:
 
 ---
 
-## 🗂️ How it works
+## How it works
 
 The system uses **Node.js** and the **GitHub GraphQL API** to fetch your commit history from the last 365 days. 
 
@@ -57,6 +57,6 @@ The system uses **Node.js** and the **GitHub GraphQL API** to fetch your commit 
 
 ---
 
-## 📄 License
+## License
 
 [MIT](./LICENSE) © 2026 hugotakeda
