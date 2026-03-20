@@ -18,6 +18,19 @@ Automatically generates a color-coded SVG of your commits, colored by the time o
 
 ---
 
+<div align="center">
+   
+# Exemple:
+Not very colorful, but it's still an example hahahaha.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hugotakeda/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg?v" />
+</p>
+
+</div>
+
+---
+
 ## Quick Start (5 minutes)
 
 1.  **Fork** this repository.
