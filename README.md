@@ -48,17 +48,14 @@ Repository already created at [hugotakeda/Energy-Rhythm-Contribution-Graph](http
 
 After the first run, the Action runs **automatically every day at 03:00 UTC**.
 
-### Step 5 — Add to your profile README
+### 📈 Step 3: Add to your Profile README
 
-In your profile repository (`YOUR_USERNAME/YOUR_USERNAME`), add:
+Copy and paste this into your profile's `README.md`:
 
-```markdown
-<picture>
-  <img
-    alt="Energy Rhythm Graph"
-    src="https://raw.githubusercontent.com/hugotakeda/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg"
-  />
-</picture>
+```html
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hugotakeda/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg" />
+</p>
 ```
 
 ---
