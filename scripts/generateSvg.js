@@ -139,16 +139,19 @@ function buildDayMap(commitDates) {
 }
 
 // ── SVG dimensions ─────────────────────────────────────────────────────────────
-const CELL     = 14;   // Larger for better visibility and alignment
+const CELL     = 14;   
 const GAP      = 4;
 const STEP     = CELL + GAP;
 const TOP_PAD  = 28;   // room for month labels
 const COLS     = 53;
 const ROWS     = 7;
-const SIDE_PAD = 20;   // tight horizontal padding
-const BOT_PAD  = 55;   // more space for the legend labels (requested)
 
-const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const SIDE_PAD = 10;   // margins
+const DAY_PAD  = 32;   // width for weekday labels on the left
+const BOT_PAD  = 60;   // space for legend
+
+const MONTHS   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const WEEKDAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 // ── Build SVG ──────────────────────────────────────────────────────────────────
 function buildSvg(days) {
@@ -162,9 +165,17 @@ function buildSvg(days) {
   }
 
   const graphWidth = weeks.length * STEP;
-  const WIDTH      = graphWidth + 2 * SIDE_PAD;  // dynamic: fits content exactly (~1000px)
+  const LEFT_PAD   = SIDE_PAD + DAY_PAD;
+  const WIDTH      = graphWidth + LEFT_PAD + SIDE_PAD;  // fits labels + grid + margin
   const HEIGHT     = TOP_PAD + ROWS * STEP + BOT_PAD;
-  const LEFT_PAD   = SIDE_PAD;
+
+  // – weekday labels –
+  const dayLabels_svg = WEEKDAYS.map((day, di) => {
+    // Only show certain days or all? User asked for Mon-Fri, but screenshot shows all.
+    // GitHub typically shows Mon, Wed, Fri. I'll show all but slightly smaller if needed.
+    const y = TOP_PAD + di * STEP + 11;
+    return `<text x="${SIDE_PAD}" y="${y}" fill="#555e6b" font-size="10" font-family="monospace">${day}</text>`;
+  }).join('\n  ');
 
   // – month labels –
   const monthLabels = [];
@@ -223,8 +234,8 @@ function buildSvg(days) {
     { state: 'noite',     label: 'Flow State',    hours: '18h – 23h' },
   ];
 
-  const legendY          = TOP_PAD + ROWS * STEP + 14;
-  const itemWidth        = 180; // Wider legend items for larger scale
+  const legendY          = TOP_PAD + ROWS * STEP + 18;
+  const itemWidth        = 180;
   const totalLegendWidth = legendItems.length * itemWidth;
   const legendStartX     = Math.floor((WIDTH - totalLegendWidth) / 2);
 
@@ -254,6 +265,9 @@ function buildSvg(days) {
 
   <!-- Background -->
   <rect width="${WIDTH}" height="${HEIGHT}" rx="8" fill="#0d1117"/>
+
+  <!-- Weekday Labels -->
+  ${dayLabels_svg}
 
   <!-- Month labels -->
   ${monthLabels.map(m => `<text x="${m.x}" y="14" fill="#8b949e" font-size="11" font-family="monospace">${m.label}</text>`).join('\n  ')}
