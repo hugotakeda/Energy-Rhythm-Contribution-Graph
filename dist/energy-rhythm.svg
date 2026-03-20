@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="762" height="156"
-     viewBox="0 0 762 156"
+     width="762" height="161"
+     viewBox="0 0 762 161"
      role="img"
      aria-label="Energy Rhythm Contribution Graph for hugotakeda">
   <defs>
@@ -53,7 +53,7 @@
   </style>
 
   <!-- Background -->
-  <rect width="762" height="156" rx="8" fill="#0d1117"/>
+  <rect width="762" height="161" rx="8" fill="#0d1117"/>
 
   <!-- Month labels -->
   <text x="10" y="14" fill="#8b949e" font-size="10" font-family="monospace">Mar</text>
@@ -1530,7 +1530,7 @@
     </rect>
     <rect x="738" y="98" width="11" height="11" rx="2" ry="2"
           fill="#6e40c9" fill-opacity="1" filter="url(#glow-52-5)">
-      <title>2026-03-20 — 13 commits | Shadow Mode</title>
+      <title>2026-03-20 — 15 commits | Shadow Mode</title>
     </rect>
 
   <!-- Legend -->
