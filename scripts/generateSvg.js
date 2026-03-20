@@ -138,8 +138,8 @@ const STEP     = CELL + GAP;
 const TOP_PAD  = 28;   // room for month labels
 const COLS     = 53;
 const ROWS     = 7;
-const SIDE_PAD = 10;   // horizontal padding on each side (compact, no clipping)
-const BOT_PAD  = 52;   // space below grid for 2-line legend
+const SIDE_PAD = 130;   // horizontal padding on each side (compact, no clipping)
+const BOT_PAD  = 60;   // space below grid for 2-line legend
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
