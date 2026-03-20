@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌙 Energy Rhythm Graph
+# Energy Rhythm Graph
 
 **A GitHub contribution graph reimagined by circadian rhythm.**  
 Automatically generates a color-coded SVG of your commits, colored by the time of day you code.
@@ -9,16 +9,16 @@ Automatically generates a color-coded SVG of your commits, colored by the time o
 
 | State | Hours | Color |
 |---|---|---|
-| 🌙 Night Owl | 00h – 05h | Neon Purple |
-| ☕ Early Bird | 06h – 11h | Soft Gold |
-| ☀️ Peak Hours | 12h – 17h | Vibrant Orange |
-| 🕯️ Deep Focus | 18h – 23h | Cyan Blue |
+| Night Owl | 00h – 05h | Neon Purple |
+| Early Bird | 06h – 11h | Soft Gold |
+| Peak Hours | 12h – 17h | Vibrant Orange |
+| Deep Focus | 18h – 23h | Cyan Blue |
 
 </div>
 
 ---
 
-## 🚀 Setup (5 minutes)
+## Setup (5 minutes)
 
 ### Step 1 — Fork or create this repository
 
@@ -85,7 +85,7 @@ In your profile repository (`YOUR_USERNAME/YOUR_USERNAME`), add:
 
 ---
 
-## 🗂️ How it works
+## How it works
 
 ```
 scripts/
@@ -114,6 +114,6 @@ dist/
 
 ---
 
-## 📄 License
+## License
 
 [MIT](./LICENSE) © 2026 hugotakeda
