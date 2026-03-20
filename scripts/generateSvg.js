@@ -138,8 +138,8 @@ const STEP     = CELL + GAP;
 const TOP_PAD  = 28;   // room for month labels
 const COLS     = 53;
 const ROWS     = 7;
-const SIDE_PAD = 15;   // tight horizontal padding
-const BOT_PAD  = 40;   // compact bottom padding
+const SIDE_PAD = 10;   // tight horizontal padding
+const BOT_PAD  = 30;   // compact bottom padding
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
