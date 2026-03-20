@@ -1,6 +1,6 @@
 <div align="center">
 
-# Energy Rhythm Graph
+# 🌙 Energy Rhythm Graph
 
 **A GitHub contribution graph reimagined by circadian rhythm.**  
 Automatically generates a color-coded SVG of your commits, colored by the time of day you code.
@@ -18,7 +18,7 @@ Automatically generates a color-coded SVG of your commits, colored by the time o
 
 ---
 
-## Setup (5 minutes)
+## 🚀 Setup (5 minutes)
 
 ### Step 1 — Fork or create this repository
 
@@ -48,22 +48,17 @@ Repository already created at [hugotakeda/Energy-Rhythm-Contribution-Graph](http
 
 After the first run, the Action runs **automatically every day at 03:00 UTC**.
 
-### 🌍 Optional: Adjusting your Timezone
-By default, the graph uses **UTC**. To use your local time (e.g., for Brazil):
-1. Go to your repository **Settings** > **Secrets and variables** > **Actions**.
-2. Switch to the **Variables** tab (top right).
-3. Click **New repository variable**.
-4. Name: `TIMEZONE` | Value: `America/Sao_Paulo` (or [your timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)).
-5. Run the action again to update the colors!
+### Step 5 — Add to your profile README
 
-### 📈 Step 3: Add to your Profile README
+In your profile repository (`YOUR_USERNAME/YOUR_USERNAME`), add:
 
-Copy and paste this into your profile's `README.md`:
-
-```html
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hugotakeda/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg" />
-</p>
+```markdown
+<picture>
+  <img
+    alt="Energy Rhythm Graph"
+    src="https://raw.githubusercontent.com/hugotakeda/Energy-Rhythm-Contribution-Graph/main/dist/energy-rhythm.svg"
+  />
+</picture>
 ```
 
 ---
@@ -90,7 +85,7 @@ Copy and paste this into your profile's `README.md`:
 
 ---
 
-##  How it works
+## 🗂️ How it works
 
 ```
 scripts/
@@ -110,7 +105,7 @@ dist/
 
 ---
 
-##  Use this for your own profile
+## 🍴 Use this for your own profile
 
 1. Fork this repository
 2. Go to your fork's **Settings → Secrets → Actions** → Add `GRAPH_TOKEN`
