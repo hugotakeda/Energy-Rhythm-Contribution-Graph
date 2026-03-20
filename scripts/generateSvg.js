@@ -139,15 +139,15 @@ function buildDayMap(commitDates) {
 }
 
 // ── SVG dimensions ─────────────────────────────────────────────────────────────
-// "Airy" Layout: Elegant smaller cells with more whitespace for better integration.
-const CELL     = 10;   
-const GAP      = 6;
+// Correcting scale: Larger cells (13px) for presence, but compact layout (~990px width alignment).
+const CELL     = 13;   
+const GAP      = 4;
 const STEP     = CELL + GAP;
-const TOP_PAD  = 22;   // tighter top
+const TOP_PAD  = 20;   // tight top
 const COLS     = 53;
 const ROWS     = 7;
 
-const SIDE_PAD = 40;   // balanced horizontal padding
+const SIDE_PAD = 29;   // exactly fits ~990px total width
 const DAY_PAD  = 32;   // space for weekday labels
 const BOT_PAD  = 45;   // compact legend
 
@@ -167,13 +167,13 @@ function buildSvg(days) {
 
   const graphWidth = weeks.length * STEP;
   const LEFT_PAD   = SIDE_PAD + DAY_PAD;
-  const WIDTH      = graphWidth + LEFT_PAD + SIDE_PAD;  // aligns to ~960-980px
+  const WIDTH      = graphWidth + LEFT_PAD + SIDE_PAD;  // aligns to ~990px
   const HEIGHT     = TOP_PAD + ROWS * STEP + BOT_PAD;
 
   // – weekday labels –
   const dayLabels_svg = WEEKDAYS.map((day, di) => {
-    const y = TOP_PAD + di * STEP + 9;
-    return `<text x="${SIDE_PAD}" y="${y}" fill="#555e6b" font-size="9" font-family="monospace">${day}</text>`;
+    const y = TOP_PAD + di * STEP + 11;
+    return `<text x="${SIDE_PAD}" y="${y}" fill="#555e6b" font-size="10" font-family="monospace">${day}</text>`;
   }).join('\n  ');
 
   // – month labels –
@@ -207,7 +207,7 @@ function buildSvg(days) {
       if (hasGlow) {
         animDefs.push(`
   <filter id="${filterId}" x="-50%" y="-50%" width="200%" height="200%">
-    <feGaussianBlur stdDeviation="2" result="blur"/>
+    <feGaussianBlur stdDeviation="2.5" result="blur"/>
     <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
   </filter>`);
       }
@@ -218,7 +218,7 @@ function buildSvg(days) {
       const tooltip    = `${day.date} — ${day.total} commit${day.total !== 1 ? 's' : ''} | ${stateLabel}`;
 
       cells.push(`
-    <rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2" ry="2"
+    <rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="3" ry="3"
           fill="${fillColor}" fill-opacity="${op}"${filterAttr}>
       <title>${tooltip}</title>
     </rect>`);
@@ -234,16 +234,16 @@ function buildSvg(days) {
   ];
 
   const legendY          = TOP_PAD + ROWS * STEP + 14;
-  const itemWidth        = 160;
+  const itemWidth        = 180;
   const totalLegendWidth = legendItems.length * itemWidth;
   const legendStartX     = Math.floor((WIDTH - totalLegendWidth) / 2);
 
   const legendItems_svg = legendItems.map((item, i) => {
     const lx = legendStartX + i * itemWidth;
     return `
-    <rect x="${lx}" y="${legendY}" width="${CELL}" height="${CELL}" rx="2" fill="${STATES[item.state].color}"/>
-    <text x="${lx + CELL + 6}" y="${legendY + 8}"  fill="#8b949e" font-size="10" font-family="monospace">${item.label}</text>
-    <text x="${lx + CELL + 6}" y="${legendY + 18}" fill="#555e6b" font-size="8"  font-family="monospace">${item.hours}</text>`;
+    <rect x="${lx}" y="${legendY}" width="${CELL}" height="${CELL}" rx="3" fill="${STATES[item.state].color}"/>
+    <text x="${lx + CELL + 8}" y="${legendY + 11}"  fill="#8b949e" font-size="12" font-family="monospace">${item.label}</text>
+    <text x="${lx + CELL + 8}" y="${legendY + 24}" fill="#555e6b" font-size="10"  font-family="monospace">${item.hours}</text>`;
   }).join('');
 
   const pulseAnim = `
@@ -269,7 +269,7 @@ function buildSvg(days) {
   ${dayLabels_svg}
 
   <!-- Month labels -->
-  ${monthLabels.map(m => `<text x="${m.x}" y="14" fill="#8b949e" font-size="10" font-family="monospace">${m.label}</text>`).join('\n  ')}
+  ${monthLabels.map(m => `<text x="${m.x}" y="14" fill="#8b949e" font-size="11" font-family="monospace">${m.label}</text>`).join('\n  ')}
 
   <!-- Cells -->
   ${cells.join('')}
