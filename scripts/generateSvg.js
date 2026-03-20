@@ -139,17 +139,17 @@ function buildDayMap(commitDates) {
 }
 
 // ── SVG dimensions ─────────────────────────────────────────────────────────────
-// Correcting scale: Larger cells (13px) for presence, but compact layout (~990px width alignment).
+// Final Precision Scale: 13px cells with 4px gap. Width matched to ~965px for perfect profile alignment.
 const CELL     = 13;   
 const GAP      = 4;
 const STEP     = CELL + GAP;
-const TOP_PAD  = 20;   // tight top
+const TOP_PAD  = 20;   
 const COLS     = 53;
 const ROWS     = 7;
 
-const SIDE_PAD = 29;   // exactly fits ~990px total width
+const SIDE_PAD = 15;   // narrower margins for exact alignment
 const DAY_PAD  = 32;   // space for weekday labels
-const BOT_PAD  = 45;   // compact legend
+const BOT_PAD  = 40;   // compact legend
 
 const MONTHS   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const WEEKDAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -167,7 +167,7 @@ function buildSvg(days) {
 
   const graphWidth = weeks.length * STEP;
   const LEFT_PAD   = SIDE_PAD + DAY_PAD;
-  const WIDTH      = graphWidth + LEFT_PAD + SIDE_PAD;  // aligns to ~990px
+  const WIDTH      = graphWidth + LEFT_PAD + SIDE_PAD;  // aligns to ~965px
   const HEIGHT     = TOP_PAD + ROWS * STEP + BOT_PAD;
 
   // – weekday labels –
