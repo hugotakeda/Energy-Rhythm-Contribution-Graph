@@ -139,17 +139,17 @@ function buildDayMap(commitDates) {
 }
 
 // ── SVG dimensions ─────────────────────────────────────────────────────────────
-// Final Precision Scale: 13px cells with 4px gap. Width matched to ~965px for perfect profile alignment.
-const CELL     = 13;   
+// Precision Scale: 12px cells with 4px gap. Width matched to ~910px for final profile perfection.
+const CELL     = 12;   
 const GAP      = 4;
 const STEP     = CELL + GAP;
-const TOP_PAD  = 20;   
+const TOP_PAD  = 18;   // tight top
 const COLS     = 53;
 const ROWS     = 7;
 
-const SIDE_PAD = 15;   // narrower margins for exact alignment
+const SIDE_PAD = 15;   // precise margins
 const DAY_PAD  = 32;   // space for weekday labels
-const BOT_PAD  = 40;   // compact legend
+const BOT_PAD  = 38;   // ultra-compact legend
 
 const MONTHS   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const WEEKDAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -167,12 +167,12 @@ function buildSvg(days) {
 
   const graphWidth = weeks.length * STEP;
   const LEFT_PAD   = SIDE_PAD + DAY_PAD;
-  const WIDTH      = graphWidth + LEFT_PAD + SIDE_PAD;  // aligns to ~965px
+  const WIDTH      = graphWidth + LEFT_PAD + SIDE_PAD;  // aligns to exactly 910px
   const HEIGHT     = TOP_PAD + ROWS * STEP + BOT_PAD;
 
   // – weekday labels –
   const dayLabels_svg = WEEKDAYS.map((day, di) => {
-    const y = TOP_PAD + di * STEP + 11;
+    const y = TOP_PAD + di * STEP + 10;
     return `<text x="${SIDE_PAD}" y="${y}" fill="#555e6b" font-size="10" font-family="monospace">${day}</text>`;
   }).join('\n  ');
 
@@ -233,7 +233,7 @@ function buildSvg(days) {
     { state: 'noite',     label: 'Flow State',    hours: '18h – 23h' },
   ];
 
-  const legendY          = TOP_PAD + ROWS * STEP + 14;
+  const legendY          = TOP_PAD + ROWS * STEP + 12;
   const itemWidth        = 180;
   const totalLegendWidth = legendItems.length * itemWidth;
   const legendStartX     = Math.floor((WIDTH - totalLegendWidth) / 2);
