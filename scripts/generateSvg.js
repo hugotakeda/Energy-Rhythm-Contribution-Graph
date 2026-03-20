@@ -139,19 +139,14 @@ function buildDayMap(commitDates) {
 }
 
 // ── SVG dimensions ─────────────────────────────────────────────────────────────
-const CELL     = 11;
-const GAP      = 3;
+const CELL     = 14;   // Larger for better visibility and alignment
+const GAP      = 4;
 const STEP     = CELL + GAP;
 const TOP_PAD  = 28;   // room for month labels
 const COLS     = 53;
 const ROWS     = 7;
-<<<<<<< HEAD
 const SIDE_PAD = 20;   // tight horizontal padding
-const BOT_PAD  = 55;   // more space for the legend labels
-=======
-const SIDE_PAD = 10;   // tight horizontal padding
-const BOT_PAD  = 40;   // compact bottom padding
->>>>>>> 57b0fad635f5e3345870d788aa49ff006e33d1f6
+const BOT_PAD  = 55;   // more space for the legend labels (requested)
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -167,7 +162,7 @@ function buildSvg(days) {
   }
 
   const graphWidth = weeks.length * STEP;
-  const WIDTH      = graphWidth + 2 * SIDE_PAD;  // dynamic: fits content exactly
+  const WIDTH      = graphWidth + 2 * SIDE_PAD;  // dynamic: fits content exactly (~1000px)
   const HEIGHT     = TOP_PAD + ROWS * STEP + BOT_PAD;
   const LEFT_PAD   = SIDE_PAD;
 
@@ -213,7 +208,7 @@ function buildSvg(days) {
       const tooltip    = `${day.date} — ${day.total} commit${day.total !== 1 ? 's' : ''} | ${stateLabel}`;
 
       cells.push(`
-    <rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2" ry="2"
+    <rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="3" ry="3"
           fill="${fillColor}" fill-opacity="${op}"${filterAttr}>
       <title>${tooltip}</title>
     </rect>`);
@@ -228,17 +223,17 @@ function buildSvg(days) {
     { state: 'noite',     label: 'Flow State',    hours: '18h – 23h' },
   ];
 
-  const legendY          = TOP_PAD + ROWS * STEP + 10;
-  const itemWidth        = 140;
+  const legendY          = TOP_PAD + ROWS * STEP + 14;
+  const itemWidth        = 180; // Wider legend items for larger scale
   const totalLegendWidth = legendItems.length * itemWidth;
   const legendStartX     = Math.floor((WIDTH - totalLegendWidth) / 2);
 
   const legendItems_svg = legendItems.map((item, i) => {
     const lx = legendStartX + i * itemWidth;
     return `
-    <rect x="${lx}" y="${legendY}" width="${CELL}" height="${CELL}" rx="2" fill="${STATES[item.state].color}"/>
-    <text x="${lx + CELL + 6}" y="${legendY + 9}"  fill="#8b949e" font-size="10" font-family="monospace">${item.label}</text>
-    <text x="${lx + CELL + 6}" y="${legendY + 20}" fill="#555e6b" font-size="9"  font-family="monospace">${item.hours}</text>`;
+    <rect x="${lx}" y="${legendY}" width="${CELL}" height="${CELL}" rx="3" fill="${STATES[item.state].color}"/>
+    <text x="${lx + CELL + 8}" y="${legendY + 11}"  fill="#8b949e" font-size="12" font-family="monospace">${item.label}</text>
+    <text x="${lx + CELL + 8}" y="${legendY + 24}" fill="#555e6b" font-size="10"  font-family="monospace">${item.hours}</text>`;
   }).join('');
 
   const pulseAnim = `
@@ -261,7 +256,7 @@ function buildSvg(days) {
   <rect width="${WIDTH}" height="${HEIGHT}" rx="8" fill="#0d1117"/>
 
   <!-- Month labels -->
-  ${monthLabels.map(m => `<text x="${m.x}" y="14" fill="#8b949e" font-size="10" font-family="monospace">${m.label}</text>`).join('\n  ')}
+  ${monthLabels.map(m => `<text x="${m.x}" y="14" fill="#8b949e" font-size="11" font-family="monospace">${m.label}</text>`).join('\n  ')}
 
   <!-- Cells -->
   ${cells.join('')}
