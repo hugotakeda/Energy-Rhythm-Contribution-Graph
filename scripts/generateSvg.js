@@ -23,10 +23,10 @@ console.log(`Token provided: ${TOKEN ? 'Yes' : 'No'} (length: ${TOKEN?.length ||
 // ── Energy State ──────────────────────────────────────────────────────────────
 const STATES = {
   none:       { label: 'No commits',         color: '#161b22', glow: 'none' },
-  madrugada:  { label: 'Night Owl 🌙',        color: '#7c3aed', glow: '#7c3aed' },
-  manha:      { label: 'Early Bird ☕',        color: '#ca8a04', glow: '#ca8a04' },
-  tarde:      { label: 'Peak Hours ☀️',       color: '#ea580c', glow: '#ea580c' },
-  noite:      { label: 'Deep Focus 🕯️',       color: '#0891b2', glow: '#0891b2' },
+  madrugada:  { label: 'Shadow Mode',   color: '#6e40c9', glow: '#6e40c9' }, // 00-05
+  manha:      { label: 'Logic Prime',   color: '#f2cc60', glow: '#f2cc60' }, // 06-11
+  tarde:      { label: 'Peak Velocity', color: '#ff7b72', glow: '#ff7b72' }, // 12-17
+  noite:      { label: 'Flow State',    color: '#3fb950', glow: '#3fb950' }, // 18-23
 };
 
 function getEnergyState(hour) {
@@ -210,10 +210,10 @@ function buildSvg(days) {
 
   // – legend –
   const legendItems = [
-    { state: 'madrugada', label: 'Night Owl',  hours: '00h – 05h' },
-    { state: 'manha',     label: 'Early Bird', hours: '06h – 11h' },
-    { state: 'tarde',     label: 'Peak Hours', hours: '12h – 17h' },
-    { state: 'noite',     label: 'Deep Focus', hours: '18h – 23h' },
+    { state: 'madrugada', label: 'Shadow Mode',   hours: '00h – 05h' },
+    { state: 'manha',     label: 'Logic Prime',   hours: '06h – 11h' },
+    { state: 'tarde',     label: 'Peak Velocity', hours: '12h – 17h' },
+    { state: 'noite',     label: 'Flow State',    hours: '18h – 23h' },
   ];
 
   const legendY          = TOP_PAD + ROWS * STEP + 10;
