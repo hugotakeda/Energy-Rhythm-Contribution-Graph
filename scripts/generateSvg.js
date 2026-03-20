@@ -139,17 +139,17 @@ function buildDayMap(commitDates) {
 }
 
 // ── SVG dimensions ─────────────────────────────────────────────────────────────
-// Final Precision Scale: 11px cells with 4px gap. Width matched to ~880px for a perfect profile fit.
+// Precision Alignment: Targeting 775px total width (Stats 467px + Tech 300px + Gap 8px).
 const CELL     = 11;   
-const GAP      = 4;
+const GAP      = 2;
 const STEP     = CELL + GAP;
-const TOP_PAD  = 18;   // tight top
+const TOP_PAD  = 18;   
 const COLS     = 53;
 const ROWS     = 7;
 
-const SIDE_PAD = 26;   // exact margins for ~880px width
+const SIDE_PAD = 27;   // exact margins to hit 775px
 const DAY_PAD  = 32;   // space for weekday labels
-const BOT_PAD  = 35;   // ultra-compact legend
+const BOT_PAD  = 35;   // compact legend
 
 const MONTHS   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const WEEKDAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -167,7 +167,7 @@ function buildSvg(days) {
 
   const graphWidth = weeks.length * STEP;
   const LEFT_PAD   = SIDE_PAD + DAY_PAD;
-  const WIDTH      = graphWidth + LEFT_PAD + SIDE_PAD;  // aligns to ~880px
+  const WIDTH      = graphWidth + LEFT_PAD + SIDE_PAD;  // aligns to exactly 775px
   const HEIGHT     = TOP_PAD + ROWS * STEP + BOT_PAD;
 
   // – weekday labels –
@@ -234,7 +234,7 @@ function buildSvg(days) {
   ];
 
   const legendY          = TOP_PAD + ROWS * STEP + 12;
-  const itemWidth        = 160;
+  const itemWidth        = 135; // tighter for 775px
   const totalLegendWidth = legendItems.length * itemWidth;
   const legendStartX     = Math.floor((WIDTH - totalLegendWidth) / 2);
 
@@ -242,8 +242,8 @@ function buildSvg(days) {
     const lx = legendStartX + i * itemWidth;
     return `
     <rect x="${lx}" y="${legendY}" width="${CELL}" height="${CELL}" rx="2" fill="${STATES[item.state].color}"/>
-    <text x="${lx + CELL + 6}" y="${legendY + 8}"  fill="#8b949e" font-size="10" font-family="monospace">${item.label}</text>
-    <text x="${lx + CELL + 6}" y="${legendY + 18}" fill="#555e6b" font-size="8"  font-family="monospace">${item.hours}</text>`;
+    <text x="${lx + CELL + 6}" y="${legendY + 8}"  fill="#8b949e" font-size="9" font-family="monospace">${item.label}</text>
+    <text x="${lx + CELL + 6}" y="${legendY + 18}" fill="#555e6b" font-size=\"7\"  font-family=\"monospace\">${item.hours}</text>`;
   }).join('');
 
   const pulseAnim = `
@@ -263,13 +263,13 @@ function buildSvg(days) {
   ${pulseAnim}
 
   <!-- Background -->
-  <rect width="${WIDTH}" height="${HEIGHT}" rx="8" fill="#0d1117"/>
+  <rect width="${WIDTH}" height="${HEIGHT}" rx=\"8\" fill=\"#0d1117\"/>
 
   <!-- Weekday Labels -->
   ${dayLabels_svg}
 
   <!-- Month labels -->
-  ${monthLabels.map(m => `<text x="${m.x}" y="14" fill="#8b949e" font-size="11" font-family="monospace">${m.label}</text>`).join('\n  ')}
+  ${monthLabels.map(m => `<text x="${m.x}" y="14" fill="#8b949e" font-size="10" font-family="monospace">${m.label}</text>`).join('\n  ')}
 
   <!-- Cells -->
   ${cells.join('')}
