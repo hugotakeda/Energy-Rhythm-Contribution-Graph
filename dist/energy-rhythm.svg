@@ -5,10 +5,6 @@
      aria-label="Energy Rhythm Contribution Graph for hugotakeda">
   <defs>
     
-  <filter id="glow-0-4" x="-50%" y="-50%" width="200%" height="200%">
-    <feGaussianBlur stdDeviation="2" result="blur"/>
-    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
   <filter id="glow-4-1" x="-50%" y="-50%" width="200%" height="200%">
     <feGaussianBlur stdDeviation="2" result="blur"/>
     <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -89,10 +85,6 @@
 
   <!-- Cells -->
   
-    <rect x="59" y="70" width="11" height="11" rx="2" ry="2"
-          fill="#ff7b72" fill-opacity="0.88" filter="url(#glow-0-4)">
-      <title>2025-03-27 — 6 commits | Peak Velocity</title>
-    </rect>
     <rect x="59" y="83" width="11" height="11" rx="2" ry="2"
           fill="#161b22" fill-opacity="1">
       <title>2025-03-28 — 0 commits | No commits</title>
@@ -1546,8 +1538,12 @@
       <title>2026-03-25 — 9 commits | Logic Prime</title>
     </rect>
     <rect x="735" y="70" width="11" height="11" rx="2" ry="2"
+          fill="#6e40c9" fill-opacity="0.45">
+      <title>2026-03-26 — 1 commit | Shadow Mode</title>
+    </rect>
+    <rect x="735" y="83" width="11" height="11" rx="2" ry="2"
           fill="#161b22" fill-opacity="1">
-      <title>2026-03-26 — 0 commits | No commits</title>
+      <title>2026-03-27 — 0 commits | No commits</title>
     </rect>
 
   <!-- Legend -->
