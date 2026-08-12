@@ -1350,8 +1350,8 @@
       <title>2026-06-21 — 0 commits | No commits</title>
     </rect>
     <rect x="644" y="31" width="11" height="11" rx="2" ry="2"
-          fill="#6e40c9" fill-opacity="0.45">
-      <title>2026-06-22 — 1 commit | Shadow Mode</title>
+          fill="#161b22" fill-opacity="1">
+      <title>2026-06-22 — 0 commits | No commits</title>
     </rect>
     <rect x="644" y="44" width="11" height="11" rx="2" ry="2"
           fill="#6e40c9" fill-opacity="0.45">
@@ -1551,11 +1551,11 @@
     </rect>
     <rect x="735" y="44" width="11" height="11" rx="2" ry="2"
           fill="#f2cc60" fill-opacity="0.45">
-      <title>2026-08-11 — 1 commit | Logic Prime</title>
+      <title>2026-08-11 — 2 commits | Logic Prime</title>
     </rect>
     <rect x="735" y="57" width="11" height="11" rx="2" ry="2"
-          fill="#161b22" fill-opacity="1">
-      <title>2026-08-12 — 0 commits | No commits</title>
+          fill="#f2cc60" fill-opacity="0.45">
+      <title>2026-08-12 — 2 commits | Logic Prime</title>
     </rect>
 
   <!-- Legend -->
