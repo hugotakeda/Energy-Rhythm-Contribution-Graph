@@ -97,10 +97,6 @@
 
   <!-- Cells -->
   
-    <rect x="59" y="57" width="11" height="11" rx="2" ry="2"
-          fill="#161b22" fill-opacity="1">
-      <title>2025-08-13 — 0 commits | No commits</title>
-    </rect>
     <rect x="59" y="70" width="11" height="11" rx="2" ry="2"
           fill="#161b22" fill-opacity="1">
       <title>2025-08-14 — 0 commits | No commits</title>
@@ -1354,8 +1350,8 @@
       <title>2026-06-22 — 0 commits | No commits</title>
     </rect>
     <rect x="644" y="44" width="11" height="11" rx="2" ry="2"
-          fill="#6e40c9" fill-opacity="0.45">
-      <title>2026-06-23 — 1 commit | Shadow Mode</title>
+          fill="#161b22" fill-opacity="1">
+      <title>2026-06-23 — 0 commits | No commits</title>
     </rect>
     <rect x="644" y="57" width="11" height="11" rx="2" ry="2"
           fill="#6e40c9" fill-opacity="0.45">
@@ -1554,8 +1550,12 @@
       <title>2026-08-11 — 2 commits | Logic Prime</title>
     </rect>
     <rect x="735" y="57" width="11" height="11" rx="2" ry="2"
-          fill="#f2cc60" fill-opacity="0.45">
-      <title>2026-08-12 — 2 commits | Logic Prime</title>
+          fill="#f2cc60" fill-opacity="0.7">
+      <title>2026-08-12 — 5 commits | Logic Prime</title>
+    </rect>
+    <rect x="735" y="70" width="11" height="11" rx="2" ry="2"
+          fill="#161b22" fill-opacity="1">
+      <title>2026-08-13 — 0 commits | No commits</title>
     </rect>
 
   <!-- Legend -->
